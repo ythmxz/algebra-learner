@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlbyu4amf7mwu"]
+
+[ext_resource type="FontFile" uid="uid://cjfgpyf1hsn4i" path="res://assets/fonts/heavitas_font.ttf" id="1_2uqk7"]
+[ext_resource type="Script" uid="uid://b3bowvrnnegwq" path="res://scripts/elements/label.gd" id="2_a3yin"]
+
+[node name="TitleLabel" type="Label"]
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("1_2uqk7")
+theme_override_font_sizes/font_size = 144
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_a3yin")

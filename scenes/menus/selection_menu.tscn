@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=3 uid="uid://j07sbpwqexn2"]
+
+[ext_resource type="Script" uid="uid://b0vmko5t0p2w4" path="res://scripts/menus/selection_menu.gd" id="1_jt6hx"]
+[ext_resource type="Shader" uid="uid://cd3muenotirdd" path="res://shaders/scrolling_texture.gdshader" id="2_62pka"]
+[ext_resource type="Texture2D" uid="uid://db2g2fs1md8n7" path="res://assets/textures/transformation_texture.png" id="2_nlrvi"]
+[ext_resource type="PackedScene" uid="uid://dl16d15dylsrj" path="res://scenes/elements/button.tscn" id="3_62pka"]
+[ext_resource type="Texture2D" uid="uid://7qnfex674x7t" path="res://assets/textures/pattern_texture.png" id="3_c02fb"]
+[ext_resource type="Texture2D" uid="uid://kli1fxbcxx1b" path="res://assets/textures/interpolation_texture.png" id="4_c02fb"]
+[ext_resource type="Texture2D" uid="uid://d10gw4440rmf3" path="res://assets/textures/color_space_texture.png" id="5_igt7n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_igt7n"]
+shader = ExtResource("2_62pka")
+shader_parameter/speed = 0.05
+
+[node name="SelectionMenu" type="Control" node_paths=PackedStringArray("back_button", "transformation_button", "interpolation_button", "color_space_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jt6hx")
+back_button = NodePath("MenuContainer/BackButton")
+transformation_button = NodePath("MenuContainer/MenuHBox/TransformationVBox/TransformationButton")
+interpolation_button = NodePath("MenuContainer/MenuHBox/InterpolationVBox/InterpolationButton")
+color_space_button = NodePath("MenuContainer/MenuHBox/ColorSpaceVBox/ColorSpaceButton")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+modulate = Color(0.12, 0.12, 0.12, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_igt7n")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_c02fb")
+stretch_mode = 1
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="MenuHBox" type="HBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 192
+alignment = 1
+
+[node name="TransformationVBox" type="VBoxContainer" parent="MenuContainer/MenuHBox"]
+layout_mode = 2
+theme_override_constants/separation = 144
+alignment = 1
+
+[node name="TransformationTexture" type="TextureRect" parent="MenuContainer/MenuHBox/TransformationVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_nlrvi")
+
+[node name="TransformationButton" parent="MenuContainer/MenuHBox/TransformationVBox" instance=ExtResource("3_62pka")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Transformação"
+
+[node name="InterpolationVBox" type="VBoxContainer" parent="MenuContainer/MenuHBox"]
+layout_mode = 2
+theme_override_constants/separation = 144
+alignment = 1
+
+[node name="InterpolationTexture" type="TextureRect" parent="MenuContainer/MenuHBox/InterpolationVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_c02fb")
+
+[node name="InterpolationButton" parent="MenuContainer/MenuHBox/InterpolationVBox" instance=ExtResource("3_62pka")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Interpolação"
+
+[node name="ColorSpaceVBox" type="VBoxContainer" parent="MenuContainer/MenuHBox"]
+layout_mode = 2
+theme_override_constants/separation = 144
+alignment = 1
+
+[node name="ColorSpaceTexture" type="TextureRect" parent="MenuContainer/MenuHBox/ColorSpaceVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_igt7n")
+
+[node name="ColorSpaceButton" parent="MenuContainer/MenuHBox/ColorSpaceVBox" instance=ExtResource("3_62pka")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Espaço de cor"
+
+[node name="BackButton" parent="MenuContainer" instance=ExtResource("3_62pka")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Voltar"

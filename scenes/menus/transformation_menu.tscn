@@ -1,0 +1,227 @@
+[gd_scene load_steps=9 format=3 uid="uid://kj4jie05st6t"]
+
+[ext_resource type="Script" uid="uid://cbt6oesx27xup" path="res://scripts/menus/transformation_menu.gd" id="1_hmey3"]
+[ext_resource type="Shader" uid="uid://cd3muenotirdd" path="res://shaders/scrolling_texture.gdshader" id="2_3cma5"]
+[ext_resource type="FontFile" uid="uid://cjfgpyf1hsn4i" path="res://assets/fonts/heavitas_font.ttf" id="2_s4644"]
+[ext_resource type="Texture2D" uid="uid://dxxcsw00u2u2n" path="res://assets/textures/grid_texture.png" id="3_3cma5"]
+[ext_resource type="Texture2D" uid="uid://7qnfex674x7t" path="res://assets/textures/pattern_texture.png" id="3_ejopo"]
+[ext_resource type="PackedScene" uid="uid://dl16d15dylsrj" path="res://scenes/elements/button.tscn" id="4_ejopo"]
+[ext_resource type="PackedScene" uid="uid://gpbr5jmkiwkb" path="res://scenes/elements/square_texture.tscn" id="5_5r7gd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5r7gd"]
+shader = ExtResource("2_3cma5")
+shader_parameter/speed = 0.05
+
+[node name="TransformationMenu" type="Control" node_paths=PackedStringArray("back_button", "reset_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hmey3")
+back_button = NodePath("MarginContainer/ButtonsHBox/BackButton")
+reset_button = NodePath("MarginContainer/ButtonsHBox/ResetButton")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+modulate = Color(0.12, 0.12, 0.12, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_5r7gd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ejopo")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="MenuHBox" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 192
+alignment = 1
+
+[node name="ControlsVBox" type="VBoxContainer" parent="MarginContainer/MenuHBox"]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="TranslationVBox" type="VBoxContainer" parent="MarginContainer/MenuHBox/ControlsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="TranslationTitle" type="Label" parent="MarginContainer/MenuHBox/ControlsVBox/TranslationVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_fonts/font = ExtResource("2_s4644")
+theme_override_font_sizes/font_size = 48
+text = "Translação"
+vertical_alignment = 1
+
+[node name="TranslationLabel" type="Label" parent="MarginContainer/MenuHBox/ControlsVBox/TranslationVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("2_s4644")
+theme_override_font_sizes/font_size = 37
+text = "A/D - Eixo X
+W/S - Eixo Y"
+vertical_alignment = 1
+
+[node name="ScaleVBox" type="VBoxContainer" parent="MarginContainer/MenuHBox/ControlsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ScaleTitle" type="Label" parent="MarginContainer/MenuHBox/ControlsVBox/ScaleVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_fonts/font = ExtResource("2_s4644")
+theme_override_font_sizes/font_size = 48
+text = "Escala"
+vertical_alignment = 1
+
+[node name="ScaleLabel" type="Label" parent="MarginContainer/MenuHBox/ControlsVBox/ScaleVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("2_s4644")
+theme_override_font_sizes/font_size = 37
+text = "H/K - Eixo X
+U/J - Eixo Y"
+vertical_alignment = 1
+
+[node name="RotationVBox" type="VBoxContainer" parent="MarginContainer/MenuHBox/ControlsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="RotationTitle" type="Label" parent="MarginContainer/MenuHBox/ControlsVBox/RotationVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_fonts/font = ExtResource("2_s4644")
+theme_override_font_sizes/font_size = 48
+text = "Rotação"
+vertical_alignment = 1
+
+[node name="RotationLabel" type="Label" parent="MarginContainer/MenuHBox/ControlsVBox/RotationVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("2_s4644")
+theme_override_font_sizes/font_size = 37
+text = "Q/E - Sentido
+1 - Eixo (0, 0)
+2 - Eixo Centralizado"
+vertical_alignment = 1
+
+[node name="MirroringVBox" type="VBoxContainer" parent="MarginContainer/MenuHBox/ControlsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="MirroringTitle" type="Label" parent="MarginContainer/MenuHBox/ControlsVBox/MirroringVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.5, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_fonts/font = ExtResource("2_s4644")
+theme_override_font_sizes/font_size = 48
+text = "Espelhamento"
+vertical_alignment = 1
+
+[node name="MirroringLabel" type="Label" parent="MarginContainer/MenuHBox/ControlsVBox/MirroringVBox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("2_s4644")
+theme_override_font_sizes/font_size = 37
+text = "Z - Eixo X
+C - Eixo Y"
+vertical_alignment = 1
+
+[node name="GridBackground" type="ColorRect" parent="MarginContainer/MenuHBox"]
+custom_minimum_size = Vector2(768, 768)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[node name="GridTexture" type="TextureRect" parent="MarginContainer/MenuHBox/GridBackground"]
+modulate = Color(1, 1, 1, 0.74902)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_3cma5")
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="BackButton" parent="MarginContainer/ButtonsHBox" instance=ExtResource("4_ejopo")]
+layout_mode = 2
+text = "Voltar"
+
+[node name="ResetButton" parent="MarginContainer/ButtonsHBox" instance=ExtResource("4_ejopo")]
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="SquareTexture" parent="." node_paths=PackedStringArray("grid_texture") instance=ExtResource("5_5r7gd")]
+layout_mode = 0
+offset_left = 1299.0
+offset_top = 411.0
+offset_right = 1427.0
+offset_bottom = 539.0
+grid_texture = NodePath("../MarginContainer/MenuHBox/GridBackground/GridTexture")

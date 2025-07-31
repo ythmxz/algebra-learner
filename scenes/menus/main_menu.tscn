@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://3fkf3hk8rxym"]
+
+[ext_resource type="Script" uid="uid://cqtj4ah5gtqf3" path="res://scripts/menus/main_menu.gd" id="1_6bivr"]
+[ext_resource type="Shader" uid="uid://cd3muenotirdd" path="res://shaders/scrolling_texture.gdshader" id="2_8r73w"]
+[ext_resource type="PackedScene" uid="uid://dlbyu4amf7mwu" path="res://scenes/elements/label.tscn" id="2_imvie"]
+[ext_resource type="Texture2D" uid="uid://7qnfex674x7t" path="res://assets/textures/pattern_texture.png" id="2_ng0o5"]
+[ext_resource type="PackedScene" uid="uid://dl16d15dylsrj" path="res://scenes/elements/button.tscn" id="3_ng0o5"]
+[ext_resource type="FontFile" uid="uid://cjfgpyf1hsn4i" path="res://assets/fonts/heavitas_font.ttf" id="4_8r73w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1hnlc"]
+shader = ExtResource("2_8r73w")
+shader_parameter/speed = 0.05
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_button", "quit_button", "version_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bivr")
+start_button = NodePath("MenuContainer/MenuVBox/ButtonsVBox/StartButton")
+quit_button = NodePath("MenuContainer/MenuVBox/ButtonsVBox/QuitButton")
+version_label = NodePath("MenuContainer/VersionLabel")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+modulate = Color(0.12, 0.12, 0.12, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_1hnlc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ng0o5")
+stretch_mode = 1
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="MenuVBox" type="VBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 144
+alignment = 1
+
+[node name="TitleLabel" parent="MenuContainer/MenuVBox" instance=ExtResource("2_imvie")]
+layout_mode = 2
+text = "ALGEBRA
+LEARNER"
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MenuContainer/MenuVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="StartButton" parent="MenuContainer/MenuVBox/ButtonsVBox" instance=ExtResource("3_ng0o5")]
+layout_mode = 2
+text = "Iniciar"
+
+[node name="QuitButton" parent="MenuContainer/MenuVBox/ButtonsVBox" instance=ExtResource("3_ng0o5")]
+layout_mode = 2
+text = "Sair"
+
+[node name="CreditsLabel" type="Label" parent="MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("4_8r73w")
+theme_override_font_sizes/font_size = 24
+text = "Feito por Yuri Thomaz"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VersionLabel" type="Label" parent="MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("4_8r73w")
+theme_override_font_sizes/font_size = 24
+vertical_alignment = 1
